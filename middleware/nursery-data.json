@@ -1,0 +1,186 @@
+{
+  "companyInfo": {
+    "name": "Srikanth Nursery and Laxmi Associates",
+    "established": {
+      "srikanthNursery": 2008,
+      "laxmiAssociates": 2013
+    },
+    "experience": 17,
+    "area": "20 acres",
+    "location": "Hyderabad, Telangana",
+    "turnover": "₹25 crore",
+    "mission": "At Srikanth Nursery, our mission is to transform outdoor spaces into beautiful, sustainable, and functional environments that enrich the lives of our clients. We are committed to providing exceptional craftsmanship, innovative design, and a client-focused approach to every project, ensuring that we not only meet but exceed expectations.",
+    "vision": "To be the leading landscape design and build firm in our region, recognized for our commitment to quality, environmental stewardship, and the creation of unique, lasting landscapes that inspire and delight.",
+    "contact": {
+      "phone": "+91 9959714692",
+      "email": "dubeyr2007@gmail.com",
+      "address": "203, Godavari block, Amrutha project, kompally-medchal dis - 500100"
+    }
+  },
+  "services": [
+    {
+      "id": 1,
+      "title": "Central Median & Avenue Plantations",
+      "description": "Professional highway and road beautification with strategic plant placement along central medians and roadsides.",
+      "icon": "🛣️"
+    },
+    {
+      "id": 2,
+      "title": "Landscape Parks Development",
+      "description": "Complete development of theme parks and colony parks with contemporary landscape design.",
+      "icon": "🏞️"
+    },
+    {
+      "id": 3,
+      "title": "Lake Beautification",
+      "description": "Transform lake fronts into stunning recreational areas with ecological balance.",
+      "icon": "🏔️"
+    },
+    {
+      "id": 4,
+      "title": "Vertical Gardens",
+      "description": "Innovative vertical garden solutions for urban spaces and building facades.",
+      "icon": "🌿"
+    },
+    {
+      "id": 5,
+      "title": "Residential & Commercial Landscape Design",
+      "description": "Custom landscape design and implementation for homes and commercial properties.",
+      "icon": "🏡"
+    },
+    {
+      "id": 6,
+      "title": "Plant & Tree Material Supply",
+      "description": "High-quality plants and trees from our extensive 20-acre nursery facility.",
+      "icon": "🌳"
+    },
+    {
+      "id": 7,
+      "title": "Irrigation Systems & Water Features",
+      "description": "Advanced irrigation solutions and beautiful water features for landscape projects.",
+      "icon": "💧"
+    },
+    {
+      "id": 8,
+      "title": "Regular Lawn & Garden Maintenance",
+      "description": "Ongoing maintenance services to keep your landscapes healthy and beautiful.",
+      "icon": "🌱"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "name": "Gandipet Lake Front Park",
+      "location": "Osman Sagar Lake, Hyderabad",
+      "description": "The Gandipet Lake front Park developed on the banks of Osman Sagar lake has been transformed into a famous tourist attraction. HMDA developed it into an Urban park with contemporary landscapes using effective coordination of landscape elements including Land Forms, Water Features, Pavement Materials, Site Amenities, Lighting and Signs.",
+      "image": "page_3.png",
+      "category": "Lake Beautification",
+      "plantSpecies": [
+        "Cannas Variegated", "Cannas wild (Orange, red and Yellow)", "Heliconia", "Ruellia", "Spider lily",
+        "Lantanas white and purple", "Gomphrena globosa", "Areca Palms", "Raphis excelsa", "Black Bamboo",
+        "Green Bamboo", "Yellow Bamboo", "Buddha belly Bamboo", "Variegated/White cluster Bamboo",
+        "Bamboo hedge", "Pennisetum rubra", "Pennisetum green", "Lemon grass", "Bamboo grass",
+        "Tabebuia rosea", "Tabebuia argentea", "Jacaranda", "Spathodea", "Lipstick red palm",
+        "Durnata erecta", "Colocasia", "Musa"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Warangal Highway NH-163",
+      "location": "NH-163, Warangal",
+      "description": "The Warangal Highway is a vital transportation corridor connecting Warangal to other major cities. This project involved designing and implementing central medians and landscaping to improve safety, traffic flow, and aesthetics.",
+      "image": "page_4.png",
+      "category": "Highway Beautification",
+      "plantSpecies": [
+        "Mimusops elengi", "Terminalia mantaly", "Dracaena mahatma", "Acalypha (green, brown, red)",
+        "Duranta erecta", "Pandanus foetidus", "Clerodendrum inerme", "Caesalpinia pulcherrima",
+        "Techoma orange", "Allamanda", "Nerium (white, pink, red)", "Plumeria pudica", "Plumeria rubra",
+        "Plumeria alba", "Leucophyllum candidum", "Bougainvillea", "Lantana x hybrida",
+        "Pennisetum alopecuroides", "Pennisetum setaceum rubram", "Delonix regia", "Peltophorum ferrugineum",
+        "Ficus religiosa", "Syzigium cumini", "Azadiracta indica", "Swietenia mahagoni"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Mayuri Nagar Rock Garden",
+      "location": "Miyapur, Hyderabad",
+      "description": "The Mayuri Nagar Rock garden situated at Miyapur has been developed into an Urban park with contemporary landscapes. The coordination and effective use of landscape elements contribute to the overall success of creating oneness and easy flow in the park.",
+      "image": "page_5.png",
+      "category": "Urban Park",
+      "plantSpecies": [
+        "Cannas Variegated", "Cannas wild (Orange, red and Yellow)", "Heliconia", "Ruellia", "Spider lily",
+        "Lantanas white and purple", "Gomphrena globosa", "Areca Palms", "Raphis excelsa", "Black Bamboo",
+        "Green Bamboo", "Yellow Bamboo", "Buddha belly Bamboo", "Variegated/White cluster Bamboo",
+        "Bamboo hedge", "Pennisetum rubra", "Pennisetum green", "Lemon grass", "Bamboo grass",
+        "Tabebuia rosea", "Tabebuia argentea", "Jacaranda", "Spathodea"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Jai Hind Colony Park",
+      "location": "Hayathnagar, Hyderabad",
+      "description": "The Jai Hind colony Park has been developed into an Urban park with contemporary landscapes, using effective coordination of landscape elements including Land Forms, Water Features, Pavement Materials, Site Amenities, Lighting and Signs.",
+      "image": "page_6.png",
+      "category": "Urban Park",
+      "plantSpecies": [
+        "Cannas Variegated", "Cannas wild (Orange, red and Yellow)", "Heliconia", "Ruellia", "Spider lily",
+        "Lantanas white and purple", "Gomphrena globosa", "Areca Palms", "Raphis excelsa", "Black Bamboo",
+        "Green Bamboo", "Yellow Bamboo", "Buddha belly Bamboo", "Variegated/White cluster Bamboo",
+        "Bamboo hedge", "Pennisetum rubra", "Pennisetum green", "Lemon grass", "Bamboo grass"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Gajwel Ring Road",
+      "location": "Gajwel, Telangana",
+      "description": "The Gajwel Ring road project involved designing and implementing central medians and landscaping to improve safety, traffic flow, and aesthetics along this vital transportation corridor.",
+      "image": "page_7.png",
+      "category": "Highway Beautification",
+      "plantSpecies": [
+        "Mimusops elengi", "Terminalia mantaly", "Dracaena mahatma", "Acalypha (green, brown, red)",
+        "Duranta erecta", "Pandanus foetidus", "Clerodendrum inerme", "Caesalpinia pulcherrima",
+        "Techoma orange", "Allamanda", "Nerium (white, pink, red)", "Plumeria pudica", "Plumeria rubra",
+        "Plumeria alba", "Leucophyllum candidum", "Bougainvillea", "Lantana x hybrida"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Nanded Highway NH-161",
+      "location": "NH-161",
+      "description": "The Nanded Highway (NH-161) beautification project involved comprehensive landscaping with central medians to improve safety, traffic flow, and aesthetics along this vital transportation corridor.",
+      "image": "page_8.png",
+      "category": "Highway Beautification",
+      "plantSpecies": [
+        "Mimusops elengi", "Terminalia mantaly", "Dracaena mahatma", "Acalypha (green, brown, red)",
+        "Duranta erecta", "Pandanus foetidus", "Clerodendrum inerme", "Caesalpinia pulcherrima",
+        "Techoma orange", "Allamanda", "Nerium (white, pink, red)", "Plumeria pudica", "Plumeria rubra"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "name": "HMDA",
+      "type": "Government",
+      "fullName": "Hyderabad Metropolitan Development Authority"
+    },
+    {
+      "name": "Municipal Departments",
+      "type": "Government"
+    },
+    {
+      "name": "Forest Department",
+      "type": "Government"
+    },
+    {
+      "name": "G. Square Developers",
+      "type": "Private",
+      "location": "Chennai based",
+      "projectValue": "Rs.5.00 Crores"
+    },
+    {
+      "name": "LULU Group",
+      "type": "Private",
+      "project": "Fair company, Malegaon"
+    }
+  ]
+}
