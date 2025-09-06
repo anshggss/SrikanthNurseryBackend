@@ -3,6 +3,7 @@ const router = express.Router();
 const upload = require('../middleware/upload');
 const fs = require('fs').promises;
 const path = require('path');
+const nodemailer = require('nodemailer')
 
 // Import models
 const CompanyInfo = require('../models/CompanyInfo');
@@ -118,19 +119,45 @@ router.get('/categories', async (req, res) => {
 
 /* -------------------- CONTACT FORM -------------------- */
 router.post('/contact', async (req, res) => {
+  const { name, email, phone, message } = req.body;
+
+  if (!name || !email || !message) {
+    return res.status(400).json({ success: false, error: 'Name, email, and message are required' });
+  }
+
   try {
-    const { name, email, phone, message } = req.body;
+    // 1. Configure transporter
+    const transporter = nodemailer.createTransport({
+      service: 'gmail', // or another email service
+      auth: {
+        user: process.env.EMAIL_USER, // your email
+        pass: process.env.EMAIL_PASS  // your email app password
+      }
+    });
 
-    if (!name || !email || !message) {
-      return res.status(400).json({ success: false, error: 'Name, email, and message are required' });
-    }
+    // 2. Email content
+    const mailOptions = {
+      from: email, // sender (user’s email)
+      to: process.env.EMAIL_RECEIVER, // your email where you want to receive messages
+      subject: `New Contact Form Submission from ${name}`,
+      html: `
+        <h2>New Contact Form Submission</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || 'N/A'}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `
+    };
 
-    console.log('New contact form submission:', { name, email, phone, message, timestamp: new Date() });
+    // 3. Send email
+    await transporter.sendMail(mailOptions);
 
-    // Optional: save to DB or send email
-    res.json({ success: true, message: 'Thank you for your inquiry! We will get back to you soon.' });
+    res.json({ success: true, message: 'Thank you! Your message has been sent.' });
+
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    console.error('Email sending failed:', error);
+    res.status(500).json({ success: false, error: 'Failed to send email' });
   }
 });
 

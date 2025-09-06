@@ -59,6 +59,6 @@ app.use((err, req, res, next) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`🌱 Srikanth Nursery API server running on port ${PORT}`);
-  console.log(`🌐 Health check available at http://localhost:${PORT}/health`);
-  console.log(`📊 API endpoints available at http://localhost:${PORT}/api`);
+  console.log(`🌐 Health check available at https://api-srikanth-nursery.onrender.com/health`);
+  console.log(`📊 API endpoints available at https://api-srikanth-nursery.onrender.com/api`);
 });
