@@ -4,6 +4,10 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
 require('dotenv').config();
+const cookieParser = require('cookie-parser');
+
+
+
 
 
 require('dotenv').config();
@@ -20,7 +24,15 @@ const PORT = process.env.PORT || 5001;
 // Middleware
 app.use(helmet());
 app.use(morgan('combined'));
-app.use(cors());
+app.use(cookieParser()); // before your routes
+
+app.use(
+  cors({
+    origin: "http://localhost:5173", // your React app
+    credentials: true,               // allow cookies to be sent
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -38,6 +50,21 @@ app.get('/health', (req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+// Serve React Admin Panel at /login
+// Serve static files from Vite build
+app.use(express.static(path.join(__dirname, "Admin/dist")));
+
+// React entry point for /login
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "Admin/dist", "index.html"));
+});
+
+// React router fallback for /login/*
+app.get("/login/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "Admin/dist", "index.html"));
+});
+
 
 // 404 handler
 app.use('*', (req, res) => {

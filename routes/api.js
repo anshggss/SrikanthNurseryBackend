@@ -4,6 +4,7 @@ const upload = require('../middleware/upload');
 const fs = require('fs').promises;
 const path = require('path');
 const nodemailer = require('nodemailer')
+const jwt = require('jsonwebtoken');
 
 // Import models
 const CompanyInfo = require('../models/CompanyInfo');
@@ -66,12 +67,15 @@ router.get('/projects/:id', async (req, res) => {
   }
 });
 
-router.post('/projects', upload.single('image'), async (req, res) => {
-  try {
-    const { name, category, description, location, featured } = req.body;
+const adminAuth = require('../middleware/adminauth');
 
-    if (!req.file) {
-      return res.status(400).json({ success: false, error: 'Image is required' });
+// POST /projects (create new project)
+router.post('/projects', adminAuth, async (req, res) => {
+  try {
+    const { name, category, description, location, featured, image, plantSpecies } = req.body;
+
+    if (!name || !category || !description || !location || !image) {
+      return res.status(400).json({ success: false, error: 'Missing required fields' });
     }
 
     const newProject = new Project({
@@ -80,7 +84,8 @@ router.post('/projects', upload.single('image'), async (req, res) => {
       description,
       location,
       featured: featured === 'true',
-      image: `/uploads/projects/${req.file.filename}`,
+      image,  // ✅ just take the filename or URL directly
+      plantSpecies: plantSpecies || [],
       createdAt: new Date()
     });
 
@@ -88,12 +93,11 @@ router.post('/projects', upload.single('image'), async (req, res) => {
 
     res.status(201).json({ success: true, data: newProject });
   } catch (error) {
-    if (req.file) {
-      await fs.unlink(req.file.path).catch(console.error);
-    }
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+
 
 /* -------------------- CLIENTS -------------------- */
 router.get('/clients', async (req, res) => {
@@ -120,6 +124,9 @@ router.get('/categories', async (req, res) => {
 /* -------------------- CONTACT FORM -------------------- */
 router.post('/contact', async (req, res) => {
   const { name, email, phone, message } = req.body;
+
+  console.log('Received body:', req.body);
+
 
   if (!name || !email || !message) {
     return res.status(400).json({ success: false, error: 'Name, email, and message are required' });
@@ -186,5 +193,84 @@ router.get('/stats', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+router.post('/admin-login', (req, res) => {
+  const { password } = req.body;
+
+  if (password === process.env.ADMIN_PASSWORD) {
+    const token = jwt.sign({ admin: true }, process.env.JWT_SECRET, { expiresIn: '15m' });
+    return res.json({ token });
+  }
+
+  res.status(401).json({ message: 'Invalid password' });
+});
+
+router.post('/login', (req, res) => {
+  const { password } = req.body;
+
+  if (password === process.env.ADMIN_PASSWORD) {
+    const token = jwt.sign({ admin: true }, process.env.JWT_SECRET, { expiresIn: '10m' });
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      maxAge: 10 * 60 * 1000
+    });
+
+    return res.json({ success: true });
+  }
+
+  res.status(401).json({ success: false, message: 'Invalid password' });
+});
+
+router.put('/projects/:id', adminAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, location, description, category, image, plantSpecies } = req.body;
+
+    const updated = await Project.findByIdAndUpdate(
+      id,
+      {
+        name,
+        location,
+        description,
+        category,
+        image,
+        plantSpecies,
+      },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ success: false, error: 'Project not found' });
+    }
+
+    res.json({ success: true, data: updated });
+  } catch (err) {
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+router.post('/logout', (req, res) => {
+  res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+  res.json({ success: true });
+});
+
+// GET /api/check-auth
+router.get('/check-auth', (req, res) => {
+  const token = req.cookies.token;
+  if (!token) return res.json({ loggedIn: false });
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if (decoded.admin) return res.json({ loggedIn: true });
+    return res.json({ loggedIn: false });
+  } catch {
+    return res.json({ loggedIn: false });
+  }
+});
+
+
+
 
 module.exports = router;
